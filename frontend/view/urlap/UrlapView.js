@@ -19,7 +19,6 @@ class UrlapView {
       event.preventDefault();
       this.#osszesElemValidE = true;
       this.#urlapElemLista.forEach(elem=>{
-        console.log(elem)
         this.#osszesElemValidE = this.#osszesElemValidE && elem.valid;
       })
       if(this.#osszesElemValidE){
@@ -30,7 +29,7 @@ class UrlapView {
       }else{
         console.log("Nem valid az űrlap");
       }
-      console.log(this.#urlapAdat)
+      this.#esemenyTrigger("click");
     });
   }
 
@@ -54,6 +53,10 @@ class UrlapView {
     this.formElem.append(txt);
   }
 
+  #esemenyTrigger(esemeny){
+    const E = new CustomEvent(esemeny, {detail: this.#urlapAdat});
+    window.dispatchEvent(E);
+  }
 
 }
 export default UrlapView;

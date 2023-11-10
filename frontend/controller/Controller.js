@@ -7,20 +7,25 @@ class Controller {
   constructor() {
     this.dataService = new DataService();
     this.urlapModel = new UrlapModel();
-    //new UrlapView($(".ujadat"), this.urlapModel.getLeiro());
     this.dataService.getAxiosData(
       "http://localhost:8000/api/tasks",
-      this.megjelenit, this.urlapModel.getLeiro()
+      this.megjelenit,
+      this.urlapModel.getLeiro()
     );
-    this.dataService.postAxiosData("http://localhost:8000/api/tasks", {
-      nev: "Jenő",
-      szul: 1666,
+
+    $(window).on("click", (event) => {
+      if (typeof event.detail !== "number") {
+        this.dataService.postAxiosData(
+          "http://localhost:8000/api/tasks",
+          event.detail
+        );
+      }
     });
   }
 
   megjelenit(list, leiro) {
-    new UrlapView($(".ujadat"), leiro);
     new Megjelenit(list, $(".lista"), leiro);
+    this.urlapView = new UrlapView($(".ujadat"), leiro);
   }
 }
 export default Controller;
