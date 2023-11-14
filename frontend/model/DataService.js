@@ -30,6 +30,18 @@ class DataService {
         console.log("hiba", error);
       });
   }
+
+  deleteAxiosData(url, id){
+    console.log(`${url}/${id}`);
+    axios
+      .delete(`${url}/${id}`)
+      .then((response) => {
+        console.log("RESP", response);
+      })
+      .catch((error) => {
+        console.log("hiba", error);
+      })
+  }
 }
 
 export default DataService;

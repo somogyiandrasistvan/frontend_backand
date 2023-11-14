@@ -13,6 +13,10 @@ class Megjelenit {
     this.tablazatbaIr();
   }
 
+  setSor(sor){
+    this.tablaElem.html(sor)
+  }
+
   sor() {
     let txt = "";
 

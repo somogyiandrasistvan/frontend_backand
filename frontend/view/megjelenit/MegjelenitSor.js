@@ -48,7 +48,7 @@ class MegjelenitSor {
       this.tablaElem.append(txt);
     }
     #esemenyTrigger(esemenyNev) {
-      const esemenyem = new CustomEvent(esemenyNev, { detail: this.#index });
+      const esemenyem = new CustomEvent(esemenyNev, { detail: this.#adat.id });
       window.dispatchEvent(esemenyem);
     }
   }

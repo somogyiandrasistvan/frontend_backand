@@ -29,7 +29,7 @@ class UrlapView {
       }else{
         console.log("Nem valid az űrlap");
       }
-      this.#esemenyTrigger("click");
+      this.#esemenyTrigger("betesz");
     });
   }
 

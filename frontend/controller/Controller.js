@@ -4,6 +4,7 @@ import UrlapView from "../view/urlap/UrlapView.js";
 import UrlapModel from "../model/UrlapModel.js";
 
 class Controller {
+  #adat;
   constructor() {
     this.dataService = new DataService();
     this.urlapModel = new UrlapModel();
@@ -13,13 +14,19 @@ class Controller {
       this.urlapModel.getLeiro()
     );
 
-    $(window).on("click", (event) => {
-      if (typeof event.detail !== "number") {
-        this.dataService.postAxiosData(
-          "http://localhost:8000/api/tasks",
-          event.detail
-        );
-      }
+    $(window).on("betesz", (event) => {
+      this.dataService.postAxiosData(
+        "http://localhost:8000/api/tasks",
+        event.detail
+      );
+    });
+
+    $(window).on("torles", (event) => {
+      console.log(event.detail);
+      this.dataService.deleteAxiosData(
+        "http://localhost:8000/api/tasks",
+        event.detail
+      );
     });
   }
 
