@@ -1,4 +1,4 @@
-class NumberUrlapElem {
+class PNumberUrlapElem {
     #key = "";
     #leiro = {};
     #value = "";
@@ -57,4 +57,4 @@ class NumberUrlapElem {
       this.formElem.append(txt);
     }
   }
-  export default NumberUrlapElem;
+  export default PNumberUrlapElem;

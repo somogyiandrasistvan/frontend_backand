@@ -1,7 +1,7 @@
-import TextUrlapElem from "./TextUrlapElem.js";
-import NumberUrlapElem from "./NumberUrlapElem.js";
+import PTextUrlapElem from "./PTextUrlapElem.js";
+import PNumberUrlapElem from "./PNumberUrlapElem.js";
 
-class UrlapView {
+class PUrlapView {
   #leiro = {};
   #urlapElemLista = [];
   #urlapNumberLista = [];
@@ -41,15 +41,15 @@ class UrlapView {
     for (const key in this.#leiro) {
       switch (this.#leiro[key].tipus) {
         case "text":
-          this.#urlapElemLista.push(new TextUrlapElem(key, this.#leiro[key], this.formElem))
+          this.#urlapElemLista.push(new PTextUrlapElem(key, this.#leiro[key], this.formElem))
           break;
         case "number":
-            this.#urlapElemLista.push(new NumberUrlapElem(key, this.#leiro[key], this.formElem));
+            this.#urlapElemLista.push(new PNumberUrlapElem(key, this.#leiro[key], this.formElem));
           break;
         default:
       }
     }
-    let txt = "<input type='submit' id='submit' value='OK'>";
+    let txt = "<input type='submit' id='submit' value='Kiválaszt!'>";
     this.formElem.append(txt);
   }
 
@@ -59,4 +59,4 @@ class UrlapView {
   }
 
 }
-export default UrlapView;
+export default PUrlapView;

@@ -13,10 +13,6 @@ class Megjelenit {
     this.tablazatbaIr();
   }
 
-  setSor(sor){
-    this.tablaElem.html(sor)
-  }
-
   sor() {
     let txt = "";
 
@@ -31,7 +27,7 @@ class Megjelenit {
 
   tablazatbaIr() {
     this.#list.forEach((elem, index) => {
-      new MegjelenitSor(elem, this.tablaElem, index);
+      new MegjelenitSor(elem, this.tablaElem, index, this.#leiro);
     });
   }
 }

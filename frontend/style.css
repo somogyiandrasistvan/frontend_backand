@@ -1,9 +1,22 @@
-.valid{
-    color:green;
+.valid {
+  color: green;
 }
-.invalid{
-    color:red
+.invalid {
+  color: red;
 }
-.elrejt{
-    display: none;
+.elrejt {
+  display: none;
 }
+
+ul {
+  display: flex;
+  list-style: none;
+}
+li {
+  padding: 5px;
+}
+.szerk form{
+  margin: -20px;
+  display: flex;
+}
+
