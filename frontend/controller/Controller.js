@@ -5,7 +5,7 @@ import UrlapModel from "../model/UrlapModel.js";
 import PUrlapView from "../view/public/PUrlapView.js";
 
 class Controller {
-  #adat;
+  #id;
 
   constructor() {
     this.dataService = new DataService();
@@ -14,6 +14,7 @@ class Controller {
     this.get();
     this.post();
     this.delete();
+    this.put();
   }
 
   megjelenit(list, leiro) {
@@ -32,6 +33,7 @@ class Controller {
 
   post() {
     $(window).on("betesz", (event) => {
+      console.log("csinál")
       this.dataService.postAxiosData(
         "http://localhost:8000/api/tasks",
         event.detail
@@ -50,8 +52,14 @@ class Controller {
   }
 
   put(){
+    $(window).on("id", (event) => {
+      console.log(event.detail);
+      this.#id = event.detail;
+    });
     $(window).on("szerkeszt", (event) => {
       console.log(event.detail);
+      console.log(this.#id)
+      this.dataService.updateAxiosData("http://localhost:8000/api/tasks", this.#id, event.detail);
     });
   }
 }

@@ -31,10 +31,9 @@ class WriterController extends Controller
 
     public function update(Request $request, $id)
     {
-        $writers = Writer::find($id);
-        $writers->nev = $request->nev;
-        $writers->szul = $request->szul;
-        $writers->save();
-        return redirect('api/writers');
+        $user = Writer::find($id);
+        $user->nev = $request->nev;
+        $user->szul = $request->szul;
+        $user->save();
     }
 }

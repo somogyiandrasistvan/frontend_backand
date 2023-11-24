@@ -8,6 +8,7 @@ class UrlapView {
   #osszesElemValidE = true;
   #urlapAdat = {};
   #boolean
+  #adatID
   constructor(szuloElem, leiro, boolean) {
     this.#boolean = boolean
     this.szuloElem = szuloElem;
@@ -16,7 +17,7 @@ class UrlapView {
     this.formElem = this.szuloElem.children("form");
 
     this.#urlapOsszerak();
-    this.submitElem = $("#submit");
+    this.submitElem = $(".submit");
     this.submitElem.on("click", (event) => {
       event.preventDefault();
       this.#osszesElemValidE = true;
@@ -26,7 +27,6 @@ class UrlapView {
       if(this.#osszesElemValidE){
         this.#urlapElemLista.forEach((elem)=>{
             this.#urlapAdat[elem.key] = elem.value;
-            console.log(this.#urlapAdat)
         })
         console.log("Valid az űrlap")
       }else{
@@ -34,7 +34,8 @@ class UrlapView {
       }
       if(this.#boolean == true){
         this.#esemenyTrigger("betesz");
-      }else{
+      }
+      if(this.#boolean == false){
         this.#esemenyTrigger("szerkeszt");
       }
     });
@@ -44,19 +45,23 @@ class UrlapView {
     return this.#urlapAdat;
   }
 
+  setAdatID(adat){
+    this.#adatID = adat
+  }
+
   #urlapOsszerak() {
     for (const key in this.#leiro) {
       switch (this.#leiro[key].tipus) {
         case "text":
-          this.#urlapElemLista.push(new TextUrlapElem(key, this.#leiro[key], this.formElem))
+          this.#urlapElemLista.push(new TextUrlapElem(key, this.#leiro[key], this.formElem, this.#boolean))
           break;
         case "number":
-            this.#urlapElemLista.push(new NumberUrlapElem(key, this.#leiro[key], this.formElem));
+            this.#urlapElemLista.push(new NumberUrlapElem(key, this.#leiro[key], this.formElem, this.#boolean));
           break;
         default:
       }
     }
-    let txt = "<input type='submit' id='submit' value='OK'>";
+    let txt = "<input type='submit' class='submit' value='OK'>";
     this.formElem.append(txt);
   }
 

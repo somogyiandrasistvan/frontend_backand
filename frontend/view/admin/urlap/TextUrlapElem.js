@@ -3,13 +3,16 @@ class TextUrlapElem {
     #leiro = {};
     #value = "";
     #valid = true;
-    constructor(key, leiro, formElem) {
+    #boolean
+    constructor(key, leiro, formElem, boolean) {
+      this.#boolean = boolean
+      console.log(this.#boolean)
       this.#key = key;
       this.#leiro = leiro;
       this.formElem = formElem;
       this.#textElem();
   
-      this.inputElem = $(`#${this.#key}`);
+      this.inputElem = $(`#${this.#key+this.#boolean}`);
       this.validElem = this.formElem
         .children("div:last-child")
         .children(".valid");
@@ -17,6 +20,7 @@ class TextUrlapElem {
         .children("div:last-child")
         .children(".invalid"); //más megoldás: this.invalidElem = $(".invalid:last")
       this.inputElem.on("keyup", () => {
+        console.log(this.inputElem);
         this.#value = this.inputElem.val();
         let reg = this.#leiro.regex;
         let regObj = new RegExp(reg);
@@ -54,7 +58,7 @@ class TextUrlapElem {
               </label>
               
               <input type="${this.#leiro.tipus}" class="form-control" 
-              id="${this.#key}" 
+              id="${this.#key+this.#boolean}" 
               name="${this.#key}"
               placeholder="${this.#leiro.placeholder}"  
               patter="${this.#leiro.regex}"

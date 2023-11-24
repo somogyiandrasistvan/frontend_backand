@@ -3,13 +3,15 @@ class NumberUrlapElem {
   #leiro = {};
   #value = "";
   #valid = true;
-  constructor(key, leiro, formElem) {
+  #boolean;
+  constructor(key, leiro, formElem, boolean) {
+    this.#boolean = boolean
     this.#key = key;
     this.#leiro = leiro;
     this.formElem = formElem;
     this.#numberElem();
 
-    this.inputElem = $(`#${this.#key}`);
+    this.inputElem = $(`#${this.#key+this.#boolean}`);
     this.validElem = this.formElem
       .children("div:last-child")
       .children(".valid");
@@ -18,6 +20,7 @@ class NumberUrlapElem {
       .children(".invalid");
     this.inputElem.on("change", () => {
       this.#value = this.inputElem.val();
+      console.log(this.#value)
       if (this.#value <= 2023 && this.#value >= 1900) {
         this.#valid = true;
       } else {
@@ -47,7 +50,7 @@ class NumberUrlapElem {
               </label>
           
               <input type="${this.#leiro.tipus}" class="form-control" 
-              id="${this.#key}" 
+              id="${this.#key+this.#boolean}" 
               name="${this.#key}" 
               min="${this.#leiro.regex.min}"
               max="${this.#leiro.regex.max}"

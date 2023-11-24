@@ -29,6 +29,7 @@ class MegjelenitSor {
         this.keszElem.css("display", "none");
         this.sorElem.append("<div class=szerk"+this.#index+">");
         this.urlapView = new UrlapView($(".szerk"+this.#index), leiro, false);
+        this.#esemenyTrigger("id")
       });
       this.megseElem.on("click", () => {
         this.#esemenyTrigger("kesz");

@@ -31,7 +31,7 @@ class DataService {
       });
   }
 
-  deleteAxiosData(url, id){
+  deleteAxiosData(url, id) {
     console.log(`${url}/${id}`);
     axios
       .delete(`${url}/${id}`)
@@ -40,7 +40,18 @@ class DataService {
       })
       .catch((error) => {
         console.log("hiba", error);
-      })
+      });
+  }
+
+  updateAxiosData(url,id,obj){
+    axios.put(url+'/'+id,obj)
+    .then(function(response){
+      location.reload();
+      console.log("resp",response);
+    })
+    .catch((error)=>{
+      console.log("hiba",error);
+    })
   }
 }
 
