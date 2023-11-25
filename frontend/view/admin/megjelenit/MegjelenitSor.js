@@ -14,7 +14,8 @@ class MegjelenitSor {
     this.sorElem = this.tablaElem.children("tr:last-child");
     this.keszElem = this.sorElem.children("td").children(".kesz" + this.#index);
     this.torolElem = this.sorElem.children("td").children(".torol");
-    this.megseElem = this.sorElem.children("td").children(".megse" + this.#index);
+    this.PtorolElem = this.sorElem.children("td").children(".Ptorol");
+    this.megseElem = this.sorElem.children("td").children(".megse");
     this.kivalasztElem = this.sorElem.children("td").children(".kivalaszt");
     this.#feher()
 
@@ -37,6 +38,10 @@ class MegjelenitSor {
     this.kivalasztElem.on("click", () => {
       this.#esemenyTrigger("kivalaszt");
     });
+    this.PtorolElem.on("click", () => {
+      this.sorElem.remove();
+      this.#esemenyTrigger("Ptorles");
+    });
   }
 
   #sor() {
@@ -49,11 +54,14 @@ class MegjelenitSor {
         txt += `<td class=adat>${element}</td>`;
       }
     }
-    if (this.#boolean == true) {
-      txt += `<td><span class="kesz${this.#index}">✔️</span> <span class="megse${this.#index}">❌</span><span class="torol">🗑</span></td>`;
+    if (this.#boolean == 0) {
+      txt += `<td><span class="kesz${this.#index}">✔️</span> <span class="megse">❌</span><span class="torol">🗑</span></td>`;
     }
-    if (this.#boolean == false) {
+    if (this.#boolean == 1) {
       txt += `<td><span class="kivalaszt">🖐️</span></td>`;
+    }
+    if(this.#boolean == 2){
+      txt += `<td><span class="Ptorol">🗑</span></td>`;
     }
     txt += "</tr>";
 
@@ -62,11 +70,11 @@ class MegjelenitSor {
 
 
   #esemenyTrigger(esemenyNev) {
-    if(this.#boolean == true){
+    if(this.#boolean == 0 || this.#boolean == 2){
       const esemenyem = new CustomEvent(esemenyNev, { detail: this.#adat.id });
       window.dispatchEvent(esemenyem);
     }
-    if(this.#boolean == false){
+    if(this.#boolean == 1){
       const esemenyem = new CustomEvent(esemenyNev, { detail: this.#adat });
       window.dispatchEvent(esemenyem);
     }

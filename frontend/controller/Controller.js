@@ -14,12 +14,11 @@ class Controller {
     this.post();
     this.delete();
     this.put();
-    this.kivalaszt();
   }
 
   megjelenit(list, leiro) {
-    new Megjelenit(list, $(".lista"), leiro, true);
-    new Megjelenit(list, $(".megjelenit"), leiro, false);
+    new Megjelenit(list, $(".lista"), leiro, 0);
+    new Megjelenit(list, $(".megjelenit"), leiro, 1);
     this.urlapView = new UrlapView($(".ujadat"), leiro, true);
   }
 
@@ -29,13 +28,24 @@ class Controller {
       this.megjelenit,
       this.urlapModel.getLeiro()
     );
+    this.dataService.getAxiosData(
+      "http://localhost:8000/api/selects",
+      this.kivalasztMegjelenit,
+      this.urlapModel.getLeiro()
+    );
   }
 
   post() {
     $(window).on("betesz", (event) => {
-      console.log("csinál")
       this.dataService.postAxiosData(
         "http://localhost:8000/api/tasks",
+        event.detail
+      );
+    });
+
+    $(window).on("kivalaszt", (event) => {
+      this.dataService.postAxiosData(
+        "http://localhost:8000/api/selects",
         event.detail
       );
     });
@@ -46,6 +56,14 @@ class Controller {
       console.log(event.detail);
       this.dataService.deleteAxiosData(
         "http://localhost:8000/api/tasks",
+        event.detail
+      );
+    });
+
+    $(window).on("Ptorles", (event) => {
+      console.log(event.detail);
+      this.dataService.deleteAxiosData(
+        "http://localhost:8000/api/selects",
         event.detail
       );
     });
@@ -63,10 +81,11 @@ class Controller {
     });
   }
 
-  kivalaszt(){
-    $(window).on("kivalaszt", (event) => {
-      console.log(event.detail);
-    });
+
+  kivalasztMegjelenit(list, leiro){
+    console.log(list)
+    new Megjelenit(list, $(".kivalasztott"), leiro, 2)
+
   }
 }
 export default Controller;
