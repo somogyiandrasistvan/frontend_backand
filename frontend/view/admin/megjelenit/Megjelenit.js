@@ -3,7 +3,9 @@ import MegjelenitSor from "./MegjelenitSor.js";
 class Megjelenit {
   #list = [];
   #leiro = [];
-  constructor(list, szuloElem, leiro) {
+  #boolean
+  constructor(list, szuloElem, leiro, boolean) {
+    this.#boolean = boolean
     this.#leiro = leiro;
     this.#list = list;
     szuloElem.append('<table class="table table-bordered table-striped ">');
@@ -27,7 +29,7 @@ class Megjelenit {
 
   tablazatbaIr() {
     this.#list.forEach((elem, index) => {
-      new MegjelenitSor(elem, this.tablaElem, index, this.#leiro);
+      new MegjelenitSor(elem, this.tablaElem, index, this.#leiro, this.#boolean);
     });
   }
 }

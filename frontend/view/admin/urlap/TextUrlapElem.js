@@ -6,7 +6,6 @@ class TextUrlapElem {
     #boolean
     constructor(key, leiro, formElem, boolean) {
       this.#boolean = boolean
-      console.log(this.#boolean)
       this.#key = key;
       this.#leiro = leiro;
       this.formElem = formElem;
@@ -20,7 +19,6 @@ class TextUrlapElem {
         .children("div:last-child")
         .children(".invalid"); //más megoldás: this.invalidElem = $(".invalid:last")
       this.inputElem.on("keyup", () => {
-        console.log(this.inputElem);
         this.#value = this.inputElem.val();
         let reg = this.#leiro.regex;
         let regObj = new RegExp(reg);

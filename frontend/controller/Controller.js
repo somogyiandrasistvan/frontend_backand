@@ -2,7 +2,6 @@ import DataService from "../model/DataService.js";
 import Megjelenit from "../view/admin/megjelenit/Megjelenit.js";
 import UrlapView from "../view/admin/urlap/UrlapView.js";
 import UrlapModel from "../model/UrlapModel.js";
-import PUrlapView from "../view/public/PUrlapView.js";
 
 class Controller {
   #id;
@@ -15,11 +14,12 @@ class Controller {
     this.post();
     this.delete();
     this.put();
+    this.kivalaszt();
   }
 
   megjelenit(list, leiro) {
-    new PUrlapView($(".beker"), leiro);
-    new Megjelenit(list, $(".lista"), leiro);
+    new Megjelenit(list, $(".lista"), leiro, true);
+    new Megjelenit(list, $(".megjelenit"), leiro, false);
     this.urlapView = new UrlapView($(".ujadat"), leiro, true);
   }
 
@@ -60,6 +60,12 @@ class Controller {
       console.log(event.detail);
       console.log(this.#id)
       this.dataService.updateAxiosData("http://localhost:8000/api/tasks", this.#id, event.detail);
+    });
+  }
+
+  kivalaszt(){
+    $(window).on("kivalaszt", (event) => {
+      console.log(event.detail);
     });
   }
 }

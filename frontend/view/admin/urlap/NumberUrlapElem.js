@@ -20,7 +20,6 @@ class NumberUrlapElem {
       .children(".invalid");
     this.inputElem.on("change", () => {
       this.#value = this.inputElem.val();
-      console.log(this.#value)
       if (this.#value <= 2023 && this.#value >= 1900) {
         this.#valid = true;
       } else {
@@ -51,7 +50,8 @@ class NumberUrlapElem {
           
               <input type="${this.#leiro.tipus}" class="form-control" 
               id="${this.#key+this.#boolean}" 
-              name="${this.#key}" 
+              name="${this.#key}"
+              placeholder="${this.#leiro.placeholder}"  
               min="${this.#leiro.regex.min}"
               max="${this.#leiro.regex.max}"
               value="${this.#leiro.value}">

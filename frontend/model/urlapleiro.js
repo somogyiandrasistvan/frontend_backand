@@ -10,7 +10,8 @@ export const urlapLeiro = {
     szul: {
       megjelenes: "Születési év",
       tipus: "number",
-      value: "2000",
+      value: "",
+      placeholder: "Születési év",
       regex: {
         min: 1900,
         max: 2023,
